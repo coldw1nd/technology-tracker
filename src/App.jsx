@@ -5,10 +5,13 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import AddTechnology from './pages/AddTechnology';
 import Statistics from './pages/Statistics';
+import TechnologyDetail from './pages/TechnologyDetail';
+import EditTechnology from './pages/EditTechnology';
+
 import { useTechnologies } from './hooks/useTechnologies';
 
 function App() {
-  const { technologies, loading, addTechnology, updateStatus, deleteTechnology } = useTechnologies();
+  const { technologies, loading, addTechnology, updateStatus, deleteTechnology, editTechnology } = useTechnologies();
 
   const [mode, setMode] = useState('light');
 
@@ -52,6 +55,14 @@ function App() {
           <Route 
             path="/stats" 
             element={<Statistics technologies={technologies} />} 
+          />
+          <Route 
+            path="/tech/:id" 
+            element={<TechnologyDetail technologies={technologies} />} 
+          />
+          <Route 
+            path="/edit/:id" 
+            element={<EditTechnology technologies={technologies} onEdit={editTechnology} />} 
           />
         </Routes>
       </Router>

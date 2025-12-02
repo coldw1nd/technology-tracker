@@ -26,6 +26,12 @@ export function useTechnologies() {
     setTechnologies([...technologies, techWithId]);
   };
 
+  const editTechnology = (id, updatedData) => {
+    setTechnologies(prev => prev.map(tech => 
+      tech.id === parseInt(id) ? { ...tech, ...updatedData } : tech
+    ));
+  };
+
   const updateStatus = (id) => {
     setTechnologies(technologies.map(tech => {
       if (tech.id === id) {
@@ -48,6 +54,7 @@ export function useTechnologies() {
     technologies,
     loading,
     addTechnology,
+    editTechnology,
     updateStatus,
     deleteTechnology
   };
